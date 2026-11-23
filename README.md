@@ -23,7 +23,7 @@ without being enabled.
 
 ```ini
 StylesPath = styles
-Packages = https://github.com/jdkato/global-english/releases/latest/download/GlobalEnglish.zip
+Packages = GlobalEnglish
 
 [*.md]
 BasedOnStyles = GlobalEnglish, Strict
@@ -33,8 +33,9 @@ BasedOnStyles = GlobalEnglish, Strict
 $ vale sync
 ```
 
-To pin a version, use a release URL instead:
-`https://github.com/jdkato/global-english/releases/download/v0.1.0/GlobalEnglish.zip`.
+`GlobalEnglish` is in the [package library](https://vale.sh/explorer), so
+the name is enough. To pin a version, give its release URL instead:
+`https://github.com/jdkato/global-english/releases/download/<version>/GlobalEnglish.zip`.
 
 `GlobalEnglish` is the core style and is always on. `Strict` and
 `Controlled` are opinions you can take or leave. `ControlledVocabulary`
