@@ -1,0 +1,25 @@
+# A step is read while the reader's hands are busy. Keep each sentence in a
+# list item short enough to hold at a glance; Strict.SentenceLength stays the
+# limit for descriptive text.
+extends: Std.Readability.SentenceLength
+message: "%d words in one step. Keep a step under 20 words."
+link: https://developers.google.com/style/procedures#multi-action-procedures
+level: suggestion
+scope: 'sentence & doc(ol > li)'
+max: 20
+
+tests:
+  - name: fires
+    input: |
+      1. Disconnect the power cable from the rear panel of the unit before you remove the four screws that hold the top cover.
+    want: |
+      1:4:Controlled.StepLength:22 words in one step. Keep a step under 20 words.
+  - name: prose is left to Strict
+    input: |
+      Disconnect the power cable from the rear panel of the unit before you remove the four screws that hold the top cover.
+    want: ""
+  - name: clean
+    input: |
+      1. Disconnect the power cable from the rear panel.
+      2. Remove the four screws from the top cover.
+    want: ""

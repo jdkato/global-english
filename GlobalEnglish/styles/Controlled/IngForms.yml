@@ -1,0 +1,23 @@
+# An -ing form can be a verb, a noun, or an adjective, and a reader has to
+# work out which. Flagged where it opens a phrase of up to six words that
+# ends in a comma, and after a conjunction or preposition.
+extends: existence
+message: "'%s' uses an -ing form. Write a full clause or a command."
+link: https://learn.microsoft.com/en-us/style-guide/global-communications/writing-tips
+level: suggestion
+nonword: true
+tokens:
+  - '(?<=^|[.!?]\s+)(?!(?:According|Bring|Gunning|Ceiling|During|Evening|Everything|Anything|Morning|Nothing|Sibling|Something|Spelling|Spring|String|Thing)\b)[A-Z][a-z]+ing\b(?=(?:\s+[^\s,.!?]+){0,5},)'
+  - '\b(?:[Bb]efore|[Aa]fter|[Ww]hen|[Bb]y|[Ww]hile)\s+(?!(?:nothing|something|everything|anything|string|thing|spring|morning|evening|ceiling|default)\b)[a-z]+ing\b'
+
+tests:
+  - name: fires
+    input: |
+      Using the tool, tighten the nut. Clean the part before installing it.
+    want: |
+      1:1:Controlled.IngForms:'Using' uses an -ing form. Write a full clause or a command.
+      1:49:Controlled.IngForms:'before installing' uses an -ing form. Write a full clause or a command.
+  - name: clean
+    input: |
+      Use the tool to tighten the nut. Clean the part before you install it. Installing the part takes a minute. During the test, wait.
+    want: ""

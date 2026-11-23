@@ -1,0 +1,22 @@
+# A step in the passive voice hides who acts. In a procedure, that is the
+# reader; say so with a command.
+extends: Std.Grammar.PassiveVoice
+message: "'%s' is passive. Write the step as a command."
+link: https://learn.microsoft.com/en-us/style-guide/global-communications/writing-tips
+level: suggestion
+scope: 'list & doc(ol > li)'
+
+tests:
+  - name: fires
+    input: |
+      1. The cover is removed with a screwdriver.
+    want: |
+      1:14:Controlled.StepPassive:'is removed' is passive. Write the step as a command.
+  - name: prose is left alone
+    input: |
+      The cover is removed at the factory.
+    want: ""
+  - name: clean
+    input: |
+      1. Remove the cover with a screwdriver.
+    want: ""

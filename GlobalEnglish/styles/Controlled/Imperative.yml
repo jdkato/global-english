@@ -1,0 +1,33 @@
+# A step is a command. "You should", "you must", and "please" turn it into
+# advice or a request, and leave the reader to decide whether to act.
+extends: existence
+message: "Write the step as a command: '%s' becomes '%s'."
+link: https://developers.google.com/style/procedures#summary-of-guidelines-for-writing-procedures
+level: suggestion
+scope: 'list & doc(ol > li)'
+nonword: true
+action:
+  name: edit
+  params:
+    - [regex, '^(?:You (?:should|must|need to|have to|can)|Please)\s+', '']
+    - [capitalize]
+tokens:
+  - '(?<=^|[.!?:]\s+)(?:You (?:should|must|need to|have to|can)|Please)\s+[a-z]+\b'
+
+tests:
+  - name: fires
+    input: |
+      1. You must remove the cover.
+      2. Please close the valve.
+    want: |
+      1:4:Controlled.Imperative:Write the step as a command: 'You must remove' becomes 'Remove'.
+      2:4:Controlled.Imperative:Write the step as a command: 'Please close' becomes 'Close'.
+  - name: prose is left alone
+    input: |
+      You can remove the cover later.
+    want: ""
+  - name: clean
+    input: |
+      1. Remove the cover.
+      2. Close the valve.
+    want: ""

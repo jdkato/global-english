@@ -1,0 +1,22 @@
+# A paragraph of more than six sentences holds more than one idea. Break it
+# up, or move the steps into a numbered list.
+extends: metric
+message: "This paragraph has %s sentences. Keep it to six or fewer."
+link: https://digital.gov/guides/plain-language/writing/clear-short#write-short-paragraphs
+level: suggestion
+scope: paragraph
+formula: sentences
+condition: "> 6"
+
+tests:
+  - name: fires
+    input: |
+      The pump moves oil. The valve controls flow. The gauge shows pressure. The filter traps dirt. The tank holds oil. The line returns oil. The seal stops leaks.
+    want: |
+      1:1:Controlled.ParagraphLength:This paragraph has 7.00 sentences. Keep it to six or fewer.
+  - name: clean
+    input: |
+      The pump moves oil. The valve controls flow. The gauge shows pressure.
+
+      The filter traps dirt. The tank holds oil. The seal stops leaks.
+    want: ""

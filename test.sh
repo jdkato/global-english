@@ -33,11 +33,15 @@ fi
 
 cp -R "$root/GlobalEnglish/styles" "$work/styles"
 cp -R "$std" "$work/styles/Std"
+# ControlledVocabulary.Approved reads a dictionary the user supplies. A tiny
+# one for the tests lives under fixtures/, so it never ships in the package.
+mkdir -p "$work/styles/config/dictionaries"
+cp "$root/fixtures/dictionaries/"Approved.* "$work/styles/config/dictionaries/"
 sed "s|^StylesPath = .*|StylesPath = $work/styles|" "$root/.vale.ini" > "$work/.vale.ini"
 mkdir -p "$root/testdata"
 
 # The in-source cases. Coverage is asked of this package's styles, not Std's.
-(cd "$work" && "$vale" test --coverage styles/GlobalEnglish styles/Strict) || status=1
+(cd "$work" && "$vale" test --coverage styles/GlobalEnglish styles/Strict styles/Controlled styles/ControlledVocabulary) || status=1
 
 # Alerts that share a line and column come back in whatever order the checks
 # ran, and that order is not part of the contract. Sorting compares the set.
@@ -46,7 +50,7 @@ run() { # <fixture path, relative to root> -> alerts on stdout, sorted
 		sort -t: -k2,2n -k3,3n -k4,4
 }
 
-for f in page.md page.rst; do
+for f in page.md page.rst procedure.md approved.md; do
 	golden=$root/testdata/$f.txt
 	got=$(run "fixtures/$f")
 	if [ "$update" -eq 1 ]; then

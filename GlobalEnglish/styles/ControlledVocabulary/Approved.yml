@@ -1,0 +1,20 @@
+# Bring your own vocabulary: every word not in config/dictionaries/Approved
+# on your StylesPath is flagged. No dictionary ships with this package, and
+# Vale stops with an error when the files are missing, so this rule is off
+# until you name it in your config.
+extends: spelling
+message: "'%s' is not in the approved vocabulary."
+level: warning
+dictionaries:
+  - Approved
+
+tests:
+  - name: fires
+    input: |
+      Remove the lid.
+    want: |
+      1:12:ControlledVocabulary.Approved:'lid' is not in the approved vocabulary.
+  - name: clean
+    input: |
+      Remove the cover.
+    want: ""

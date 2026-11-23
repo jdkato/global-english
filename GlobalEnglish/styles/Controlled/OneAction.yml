@@ -1,0 +1,31 @@
+# A step that gives two commands. The reader does the first, looks back, and
+# can miss the second; give each action its own numbered step.
+extends: sequence
+message: "This step gives two commands. Give each action its own step."
+link: https://developers.google.com/style/procedures#multi-action-procedures
+level: suggestion
+scope: 'list & doc(ol > li)'
+tokens:
+  - pattern: '\S+'
+    negate: true
+  - tag: '^VB$'
+    pattern: '[A-Z][a-z]+'
+  - pattern: 'and|then'
+    skip: 10
+  - tag: '^VB$'
+    pattern: '[a-z]+'
+    skip: 1
+
+tests:
+  - name: fires
+    input: |
+      1. Remove the cover and disconnect the cable.
+      2. Open the valve, then wait.
+    want: |
+      1:4:Controlled.OneAction:This step gives two commands. Give each action its own step.
+      2:4:Controlled.OneAction:This step gives two commands. Give each action its own step.
+  - name: clean
+    input: |
+      1. Remove the cover.
+      2. Disconnect the cable and the hose.
+    want: ""

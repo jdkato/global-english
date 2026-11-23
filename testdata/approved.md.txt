@@ -1,0 +1,1 @@
+fixtures/approved.md:1:12:ControlledVocabulary.Approved:'lid' is not in the approved vocabulary.

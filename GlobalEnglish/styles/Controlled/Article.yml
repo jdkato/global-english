@@ -1,0 +1,32 @@
+# "Remove cover" drops the article that tells a reader, and a translation
+# tool, that "cover" is a noun. Mass nouns such as "power" and "data" take no
+# article and are left out.
+extends: sequence
+message: "A noun after the verb has no article. Add 'the' or 'a'."
+link: https://learn.microsoft.com/en-us/style-guide/global-communications/writing-tips
+level: suggestion
+scope: 'list & doc(ol > li)'
+tokens:
+  - pattern: '\S+'
+    negate: true
+  - tag: '^VB$'
+    pattern: '[A-Z][a-z]+'
+  - tag: '^NN$'
+    pattern: '(?!(?:access|air|caution|content|code|damage|data|documentation|equipment|feedback|firmware|fuel|hardware|help|information|input|oil|output|power|pressure|software|storage|support|text|time|traffic|water|setup|care|attention|force|heat)$)[a-z]+'
+    target: true
+  - tag: CD
+    negate: true
+
+tests:
+  - name: fires
+    input: |
+      1. Remove cover.
+      2. Close valve on the panel.
+    want: |
+      1:11:Controlled.Article:A noun after the verb has no article. Add 'the' or 'a'.
+      2:10:Controlled.Article:A noun after the verb has no article. Add 'the' or 'a'.
+  - name: clean
+    input: |
+      1. Remove the cover.
+      2. Turn off power. Repeat step 3.
+    want: ""

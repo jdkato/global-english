@@ -1,0 +1,8 @@
+fixtures/procedure.md:3:1:Controlled.ParagraphLength:This paragraph has 7.00 sentences. Keep it to six or fewer.
+fixtures/procedure.md:7:4:Controlled.OneAction:This step gives two commands. Give each action its own step.
+fixtures/procedure.md:8:4:Controlled.Imperative:Write the step as a command: 'You must close' becomes 'Close'.
+fixtures/procedure.md:9:4:Controlled.IngForms:'Using' uses an -ing form. Write a full clause or a command.
+fixtures/procedure.md:10:15:Controlled.StepPassive:'is removed' is passive. Write the step as a command.
+fixtures/procedure.md:11:22:Controlled.IngForms:'before installing' uses an -ing form. Write a full clause or a command.
+fixtures/procedure.md:12:11:Controlled.Article:A noun after the verb has no article. Add 'the' or 'a'.
+fixtures/procedure.md:13:4:Controlled.StepLength:21 words in one step. Keep a step under 20 words.
