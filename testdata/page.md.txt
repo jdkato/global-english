@@ -6,7 +6,7 @@ fixtures/page.md:3:95:GlobalEnglish.Idioms:'drop the ball' is an idiom. Say it p
 fixtures/page.md:7:4:GlobalEnglish.SetUp:'setup' mixes the verb and the noun. Use 'set up'.
 fixtures/page.md:7:42:GlobalEnglish.Latin:Use 'through' or 'by' instead of 'via'.
 fixtures/page.md:7:55:GlobalEnglish.Latin:Use 'for example' instead of 'e.g.'.
-fixtures/page.md:7:76:GlobalEnglish.Latin:Use 'and so on' instead of 'etc'.
+fixtures/page.md:7:76:GlobalEnglish.Latin:Use 'and so on' instead of 'etc.'.
 fixtures/page.md:7:81:GlobalEnglish.Since:'Since' can mean 'because' or 'from the time that'. For a reason, use 'because'.
 fixtures/page.md:9:1:GlobalEnglish.OptionalThat:Add 'that' after 'Ensure', so that the clause is not read as its object.
 fixtures/page.md:9:74:GlobalEnglish.BarePronoun:'This' opens the sentence with no noun. Say what it refers to.

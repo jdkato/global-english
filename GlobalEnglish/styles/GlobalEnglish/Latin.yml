@@ -1,17 +1,13 @@
 # Latin abbreviations and loanwords. Readers confuse "e.g." with "i.e.",
-# and a translation tool often leaves them as they are.
-extends: substitution
+# and a translation tool often leaves them as they are. Std has e.g., i.e.,
+# etc., and vs.; the loanwords are added here.
+extends: Std.Abbreviations.Latin
 message: "Use %s instead of '%s'."
 link: https://developers.google.com/style/word-list#eg
 level: warning
-ignorecase: true
-nonword: true
 action:
   name: replace
-swap:
-  '\be\.\s?g\.': for example
-  '\bi\.\s?e\.': that is
-  '\betc\b': and so on
+swap+:
   '\bet al\.': and others
   '\bcf\.': compare
   '\bviz\.': namely
@@ -21,8 +17,6 @@ swap:
   '\bper se\b': in itself
   '\bad hoc\b': unplanned
   '\ba priori\b': in advance
-  '\bvs?\.(?=\s)': compared to
-  '\bversus\b': compared to
 
 tests:
   - name: fires
@@ -32,7 +26,15 @@ tests:
       1:15:GlobalEnglish.Latin:Use 'for example' instead of 'e.g.'.
       1:35:GlobalEnglish.Latin:Use 'that is' instead of 'i.e.'.
       1:46:GlobalEnglish.Latin:Use 'through' or 'by' instead of 'via'.
-      1:59:GlobalEnglish.Latin:Use 'and so on' instead of 'etc'.
+      1:59:GlobalEnglish.Latin:Use 'and so on' instead of 'etc.'.
+  - name: loanwords
+    input: |
+      The fix is ad hoc, per se, and vice versa, cf. the notes.
+    want: |
+      1:12:GlobalEnglish.Latin:Use 'unplanned' instead of 'ad hoc'.
+      1:20:GlobalEnglish.Latin:Use 'in itself' instead of 'per se'.
+      1:32:GlobalEnglish.Latin:Use 'the other way around' instead of 'vice versa'.
+      1:44:GlobalEnglish.Latin:Use 'compare' instead of 'cf.'.
   - name: clean
     input: |
       Use a text format, for example, YAML or JSON, through the CLI. The service is ready.

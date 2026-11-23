@@ -18,16 +18,31 @@ update=0
 status=0
 
 root=$(cd "$(dirname "$0")" && pwd)
+work=$(mktemp -d)
+trap 'rm -rf "$work"' EXIT
+
+# Latin and SentenceLength extend Std rules, so Std has to be on the
+# StylesPath: present, not enabled, as sync leaves it. CI checks the repo out
+# beside this one; locally the sibling clone serves.
 vale=${VALE:-vale}
+std=${STD:-$root/../Std/Std}
+if [ ! -d "$std" ]; then
+	echo "FAIL: Std not found at '$std'; set STD to a checkout's style directory" >&2
+	exit 1
+fi
+
+cp -R "$root/GlobalEnglish/styles" "$work/styles"
+cp -R "$std" "$work/styles/Std"
+sed "s|^StylesPath = .*|StylesPath = $work/styles|" "$root/.vale.ini" > "$work/.vale.ini"
 mkdir -p "$root/testdata"
 
-# The in-source cases.
-(cd "$root" && "$vale" test --coverage GlobalEnglish/styles) || status=1
+# The in-source cases. Coverage is asked of this package's styles, not Std's.
+(cd "$work" && "$vale" test --coverage styles/GlobalEnglish styles/Strict) || status=1
 
 # Alerts that share a line and column come back in whatever order the checks
 # ran, and that order is not part of the contract. Sorting compares the set.
 run() { # <fixture path, relative to root> -> alerts on stdout, sorted
-	(cd "$root" && "$vale" --output=line --no-global "$1" 2>&1 || true) |
+	(cd "$root" && "$vale" --config "$work/.vale.ini" --output=line --no-global "$1" 2>&1 || true) |
 		sort -t: -k2,2n -k3,3n -k4,4
 }
 

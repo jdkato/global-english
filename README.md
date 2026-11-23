@@ -16,7 +16,10 @@ and [plain text](https://docs.vale.sh/formats/text) (Vale 3.23.0 or later).
 
 ## Install
 
-Requires Vale 3.21.0 or later.
+Requires Vale 3.21.0 or later. GlobalEnglish builds on
+[Std](https://github.com/vale-cli/Std), the standard library its Latin and
+sentence-length rules extend. Sync pulls Std in, and it stays present
+without being enabled.
 
 ```ini
 StylesPath = styles
@@ -108,4 +111,5 @@ rule is for teams whose translation process does not.
 `./test.sh` runs each rule's own cases with `vale test --coverage`, then
 checks `fixtures/page.md` and `fixtures/page.rst` against the golden files
 in `testdata/` and requires their rewrites in `fixtures/clean/` to pass
-clean. `./test.sh -u` rewrites the golden files.
+clean. `./test.sh -u` rewrites the golden files. The script expects a Std
+checkout beside this repository, or `STD` pointing at its `Std` directory.

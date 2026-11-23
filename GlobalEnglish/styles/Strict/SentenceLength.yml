@@ -1,12 +1,10 @@
 # A long sentence is a long parse, and a reader working in a second
 # language holds less of it at once. Translation tools also do worse on it.
-extends: occurrence
+extends: Std.Readability.SentenceLength
 message: "%d words in one sentence. Keep it under 25; split it."
 link: https://developers.google.com/style/translation#use-simpler-words-and-shorter-sentences
 level: suggestion
-scope: sentence
 max: 25
-token: '\b\w+\b'
 
 tests:
   - name: fires
