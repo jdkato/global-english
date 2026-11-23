@@ -26,7 +26,7 @@ tests:
       1:15:GlobalEnglish.Latin:Use 'for example' instead of 'e.g.'.
       1:35:GlobalEnglish.Latin:Use 'that is' instead of 'i.e.'.
       1:46:GlobalEnglish.Latin:Use 'through' or 'by' instead of 'via'.
-      1:59:GlobalEnglish.Latin:Use 'and so on' instead of 'etc.'.
+      1:59:GlobalEnglish.Latin:Use 'and so on' instead of 'etc'.
   - name: loanwords
     input: |
       The fix is ad hoc, per se, and vice versa, cf. the notes.
