@@ -1,0 +1,31 @@
+# "Ensure the file exists": without "that", the reader takes "the file" as
+# the object, then has to start over at "exists". The word costs nothing.
+extends: sequence
+message: "Add 'that' after '%s', so that the clause is not read as its object."
+link: https://learn.microsoft.com/en-us/style-guide/global-communications/writing-tips
+level: suggestion
+action:
+  name: edit
+  params:
+    - suffix
+    - ' that'
+tokens:
+  - pattern: '(?i)(?:ensure|verify|confirm|indicate|assume|believe|suggest|mean)(?:s|d|ed)?'
+    target: true
+  - tag: DT|PRP|PRP\$
+    pattern: '(?i)(?!that$)\w+'
+  - tag: VBZ|VBP|VBD|MD
+    skip: 2
+
+tests:
+  - name: fires
+    input: |
+      Ensure the file exists. Verify you have access. This means your config is ready.
+    want: |
+      1:1:GlobalEnglish.OptionalThat:Add 'that' after 'Ensure', so that the clause is not read as its object.
+      1:25:GlobalEnglish.OptionalThat:Add 'that' after 'Verify', so that the clause is not read as its object.
+      1:54:GlobalEnglish.OptionalThat:Add 'that' after 'means', so that the clause is not read as its object.
+  - name: clean
+    input: |
+      Ensure that the file exists. Verify that you have access. Verify the checksum.
+    want: ""

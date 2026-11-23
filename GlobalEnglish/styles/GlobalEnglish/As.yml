@@ -1,0 +1,25 @@
+# "As" in front of a clause means "because", "when", or "in the way that".
+# Flagged where a subject follows it, because there it reads as a
+# reason; "as shown", "as needed", and "as soon as" are left alone.
+extends: existence
+message: "'%s' can mean 'because', 'when', or 'in the way that'. For a reason, use '%s'."
+link: https://developers.google.com/style/word-list#as
+level: suggestion
+action:
+  name: replace
+  params:
+    - because
+tokens:
+  - '(?<=^|[.!?:;]\s+|,\s+)(?:As|as)(?= (?:it|they|we|you|he|she|this|these|those|there|the \w+ (?:is|are|was|were|has|have|does|do|can|cannot|will|must)\b)\b)(?! you can see\b| we saw\b| you type\b| (?:it|they|we|you|he|she|this|these|those) (?:does|do|did)\b)'
+
+tests:
+  - name: fires
+    input: |
+      Retry later. As the server is offline, use the old token, as it is still valid.
+    want: |
+      1:14:GlobalEnglish.As:'As' can mean 'because', 'when', or 'in the way that'. For a reason, use 'because'.
+      1:59:GlobalEnglish.As:'as' can mean 'because', 'when', or 'in the way that'. For a reason, use 'because'.
+  - name: clean
+    input: |
+      As shown above, use the old token as needed. Run it again. As before, check the log. Case matters, as it does in the dictionary. As soon as it expires, retry. It works as you would expect.
+    want: ""

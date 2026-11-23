@@ -1,0 +1,27 @@
+# "Set up" is the verb and "setup" the noun. A translation tool picks a
+# different word for each, so the spelling has to say which one is meant.
+extends: existence
+message: "'%s' mixes the verb and the noun. Use '%s'."
+link: https://developers.google.com/style/word-list#setup
+level: warning
+ignorecase: true
+matchcase: true
+action:
+  name: replace
+  params:
+    - set up
+tokens:
+  - '(?<=\b(?:to|will|can|could|must|should|please|then|and|first|you|we|they|I|not|let us|helps you|lets you) )setup(?=\s+(?:a|an|the|your|our|their|this|that|these|those|it|them|my)\b)'
+  - '(?<=^|[.!?:]\s+)setup(?= (?:a|an|the|your|our|their|this|it)\b)'
+
+tests:
+  - name: fires
+    input: |
+      To setup the server, run the script. Setup your account.
+    want: |
+      1:4:GlobalEnglish.SetUp:'setup' mixes the verb and the noun. Use 'set up'.
+      1:38:GlobalEnglish.SetUp:'Setup' mixes the verb and the noun. Use 'Set up'.
+  - name: clean
+    input: |
+      To set up the server, run the script. The setup takes a minute.
+    want: ""

@@ -1,0 +1,39 @@
+# Latin abbreviations and loanwords. Readers confuse "e.g." with "i.e.",
+# and a translation tool often leaves them as they are.
+extends: substitution
+message: "Use %s instead of '%s'."
+link: https://developers.google.com/style/word-list#eg
+level: warning
+ignorecase: true
+nonword: true
+action:
+  name: replace
+swap:
+  '\be\.\s?g\.': for example
+  '\bi\.\s?e\.': that is
+  '\betc\b': and so on
+  '\bet al\.': and others
+  '\bcf\.': compare
+  '\bviz\.': namely
+  '\bn\.\s?b\.': note
+  '\bvia\b': through|by
+  '\bvice versa\b': the other way around
+  '\bper se\b': in itself
+  '\bad hoc\b': unplanned
+  '\ba priori\b': in advance
+  '\bvs?\.(?=\s)': compared to
+  '\bversus\b': compared to
+
+tests:
+  - name: fires
+    input: |
+      Use a format, e.g., YAML or JSON, i.e. text, via the CLI, etc.
+    want: |
+      1:15:GlobalEnglish.Latin:Use 'for example' instead of 'e.g.'.
+      1:35:GlobalEnglish.Latin:Use 'that is' instead of 'i.e.'.
+      1:46:GlobalEnglish.Latin:Use 'through' or 'by' instead of 'via'.
+      1:59:GlobalEnglish.Latin:Use 'and so on' instead of 'etc'.
+  - name: clean
+    input: |
+      Use a text format, for example, YAML or JSON, through the CLI. The service is ready.
+    want: ""

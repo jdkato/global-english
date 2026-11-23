@@ -1,0 +1,25 @@
+fixtures/page.md:3:25:GlobalEnglish.Idioms:'a piece of cake' is an idiom. Say it plainly: 'easy'.
+fixtures/page.md:3:46:Strict.Contractions:Write out 'it's' as 'it is'.
+fixtures/page.md:3:55:GlobalEnglish.Idioms:'low-hanging fruit' is an idiom. Say it plainly: 'easy improvements'.
+fixtures/page.md:3:89:Strict.Contractions:Write out 'Don't' as 'Do not'.
+fixtures/page.md:3:95:GlobalEnglish.Idioms:'drop the ball' is an idiom. Say it plainly: 'make a mistake'.
+fixtures/page.md:7:4:GlobalEnglish.SetUp:'setup' mixes the verb and the noun. Use 'set up'.
+fixtures/page.md:7:42:GlobalEnglish.Latin:Use 'through' or 'by' instead of 'via'.
+fixtures/page.md:7:55:GlobalEnglish.Latin:Use 'for example' instead of 'e.g.'.
+fixtures/page.md:7:76:GlobalEnglish.Latin:Use 'and so on' instead of 'etc'.
+fixtures/page.md:7:81:GlobalEnglish.Since:'Since' can mean 'because' or 'from the time that'. For a reason, use 'because'.
+fixtures/page.md:9:1:GlobalEnglish.OptionalThat:Add 'that' after 'Ensure', so that the clause is not read as its object.
+fixtures/page.md:9:74:GlobalEnglish.BarePronoun:'This' opens the sentence with no noun. Say what it refers to.
+fixtures/page.md:9:79:GlobalEnglish.OptionalThat:Add 'that' after 'means', so that the clause is not read as its object.
+fixtures/page.md:9:89:GlobalEnglish.May:'may' reads as permission or possibility. Use 'can' or 'might'.
+fixtures/page.md:9:101:GlobalEnglish.PhrasalVerbs:Use 'learn' instead of 'find out'.
+fixtures/page.md:13:10:GlobalEnglish.NounStack:Three nouns in a row. Unpack the stack with 'of', 'for', or a verb.
+fixtures/page.md:13:42:GlobalEnglish.PhrasalVerbs:Use 'disable' instead of 'turn off'.
+fixtures/page.md:13:83:GlobalEnglish.While:'while' can mean 'during the time that' or 'whereas'. For a contrast, use 'whereas' or 'although'.
+fixtures/page.md:13:110:GlobalEnglish.As:'As' can mean 'because', 'when', or 'in the way that'. For a reason, use 'because'.
+fixtures/page.md:15:1:GlobalEnglish.Slang:'Folks' is informal. Use 'people'.
+fixtures/page.md:15:13:GlobalEnglish.Slang:'awesome' is informal. Use 'excellent'.
+fixtures/page.md:15:29:GlobalEnglish.Slang:'gonna' is informal. Use 'going to'.
+fixtures/page.md:15:44:GlobalEnglish.Slang:'tons of' is informal. Use 'many'.
+fixtures/page.md:15:58:GlobalEnglish.Humor:'no pun intended' marks a joke. Humor rarely translates; state the point plainly.
+fixtures/page.md:17:1:Strict.SentenceLength:35 words in one sentence. Keep it under 25; split it.

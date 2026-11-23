@@ -1,0 +1,29 @@
+# A sentence that opens on "This" or "That" and goes straight to a verb, or
+# on "It is" or "It was". The reader has to find what it points back to, and
+# a translation has to pick its gender. Name the thing: "This setting".
+# "That is," the plain form of "i.e.", is left alone.
+extends: sequence
+message: "'%s' opens the sentence with no noun. Say what it refers to."
+link: https://developers.google.com/style/word-list#this-that
+level: suggestion
+tokens:
+  - pattern: '\S+'
+    negate: true
+  - pattern: 'This|That|It'
+    target: true
+  - tag: VBZ|VBD|VBP|MD
+exceptions:
+  - '^That is,'
+  - '^It(?=\s)(?!\s+(?:is|was)\b)'
+
+tests:
+  - name: fires
+    input: |
+      Restart the server. This clears the cache. It is slow.
+    want: |
+      1:21:GlobalEnglish.BarePronoun:'This' opens the sentence with no noun. Say what it refers to.
+      1:44:GlobalEnglish.BarePronoun:'It' opens the sentence with no noun. Say what it refers to.
+  - name: clean
+    input: |
+      Restart the server. This step clears the cache. That is, the restart takes a minute. It takes a minute.
+    want: ""

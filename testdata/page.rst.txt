@@ -1,0 +1,18 @@
+fixtures/page.rst:4:14:GlobalEnglish.Idioms:'a no-brainer' is an idiom. Say it plainly: 'an easy decision'.
+fixtures/page.rst:4:32:Strict.Contractions:Write out 'it's' as 'it is'.
+fixtures/page.rst:4:37:GlobalEnglish.Idioms:'the icing on the cake' is an idiom. Say it plainly: 'a bonus'.
+fixtures/page.rst:4:80:Strict.Contractions:Write out 'won't' as 'will not'.
+fixtures/page.rst:9:1:GlobalEnglish.Since:'Since' can mean 'because' or 'from the time that'. For a reason, use 'because'.
+fixtures/page.rst:9:51:GlobalEnglish.Latin:Use 'that is' instead of 'i.e.'.
+fixtures/page.rst:9:74:GlobalEnglish.May:'may' reads as permission or possibility. Use 'can' or 'might'.
+fixtures/page.rst:11:1:GlobalEnglish.OptionalThat:Add 'that' after 'Verify', so that the clause is not read as its object.
+fixtures/page.rst:11:30:GlobalEnglish.BarePronoun:'That' opens the sentence with no noun. Say what it refers to.
+fixtures/page.rst:11:53:GlobalEnglish.As:'As' can mean 'because', 'when', or 'in the way that'. For a reason, use 'because'.
+fixtures/page.rst:13:26:GlobalEnglish.NounStack:Three nouns in a row. Unpack the stack with 'of', 'for', or a verb.
+fixtures/page.rst:13:64:GlobalEnglish.PhrasalVerbs:Use 'determine' instead of 'figure out'.
+fixtures/page.rst:13:107:GlobalEnglish.While:'while' can mean 'during the time that' or 'whereas'. For a contrast, use 'whereas' or 'although'.
+fixtures/page.rst:15:3:GlobalEnglish.Slang:'Yeah' is informal. Use 'yes'.
+fixtures/page.rst:15:27:GlobalEnglish.Slang:'kinda' is informal. Use 'somewhat'.
+fixtures/page.rst:15:41:GlobalEnglish.Humor:'lol' marks a joke. Humor rarely translates; state the point plainly.
+fixtures/page.rst:16:3:GlobalEnglish.SetUp:'Setup' mixes the verb and the noun. Use 'Set up'.
+fixtures/page.rst:16:3:Strict.SentenceLength:28 words in one sentence. Keep it under 25; split it.

@@ -1,0 +1,115 @@
+# Figures of speech from sports, war, and daily life in one culture. A
+# reader who learned English from textbooks reads them literally, and a
+# translation tool does the same.
+extends: substitution
+message: "'%[2]s' is an idiom. Say it plainly: %[1]s."
+link: https://learn.microsoft.com/en-us/style-guide/global-communications/writing-tips
+level: warning
+ignorecase: true
+action:
+  name: replace
+swap:
+  # Sports
+  ballpark (?:figure|estimate|number): rough estimate
+  in the (?:same )?ballpark: close
+  out of left field: unexpected
+  touch(?:ing)? base: talk
+  (?:hit|knock) it out of the park: succeed
+  hit a home run: succeed
+  step up to the plate: take responsibility
+  slam[- ]dunk: certain success
+  game[- ]changer: major change
+  level the playing field: make it fair
+  drop(?:ped|s)? the ball: make a mistake
+  mov(?:e|es|ed|ing) the goal ?posts: change the requirements
+  par for the course: normal
+  hit the ground running: start quickly
+  back to square one: back to the start
+  the ball is in (?:your|our|their) court: the decision is yours
+  a whole new ball ?game: a new situation
+  (?:a )?curve ?ball: a surprise
+  home stretch: final stage
+  Hail Mary: last attempt
+  go to bat for: support
+  on deck: next
+  call(?:s|ed)? the shots: decide
+  # War
+  bite the bullet: accept the cost
+  in the trenches: doing the work
+  silver bullet: simple solution
+  killer (?:feature|app): main feature
+  battle[- ](?:tested|hardened): proven
+  under fire: criticized
+  minefield: risk
+  on the front ?lines?: directly involved
+  rally the troops: motivate the team
+  dodge(?:d)? a bullet: avoid a problem
+  shoot from the hip: act without planning
+  scorched[- ]earth: destructive
+  take no prisoners: act forcefully
+  hold the fort: stay in charge
+  big guns: experts
+  # Daily life
+  (?:a )?piece of cake: easy
+  easy as pie: easy
+  (?:a )?no[- ]brainer: an easy decision
+  low[- ]hanging fruit: easy improvements
+  think outside the box: think creatively
+  out of the box: by default
+  boil(?:ing)? the ocean: do too much
+  move the needle: make a difference
+  under the hood: internally
+  the whole nine yards: everything
+  (?:get|have) (?:your|our|their|all the) ducks in a row: get ready
+  rule of thumb: general rule
+  (?:take it )?with a grain of salt: with caution
+  on the same page: in agreement
+  (?:a )?deep[- ]dive: a detailed look
+  circle back: return
+  (?:a )?perfect storm: a rare combination of problems
+  the elephant in the room: the obvious problem
+  kill two birds with one stone: solve two problems at once
+  bells and whistles: extra features
+  cut(?:ting)? corners: skip steps
+  dogfood(?:ing)?: use your own product
+  hit the nail on the head: be exactly right
+  jump through hoops: do extra work
+  a drop in the bucket: a small amount
+  on the fly: while it runs
+  out of the woods: safe
+  (?:it's not|isn't|not) rocket science: is not difficult
+  red tape: bureaucracy
+  the bottom line: the result
+  wild[- ]goose chase: futile search
+  in a nutshell: in short
+  at the end of the day: ultimately
+  (?:a )?heads[- ]up: a notice
+  keep an eye on: monitor
+  up and running: running
+  from scratch: from the beginning
+  (?:the )?icing on the cake: a bonus
+  sweet spot: best balance
+  (?:a )?double[- ]edged sword: a tradeoff
+  ballpark: estimate
+  by the same token: similarly
+  bang for (?:the|your) buck: value
+  rabbit hole: distraction
+
+tests:
+  - name: fires
+    input: |
+      Setup is a piece of cake, and the cache is the low-hanging fruit. Don't drop the ball.
+    want: |
+      1:10:GlobalEnglish.Idioms:'a piece of cake' is an idiom. Say it plainly: 'easy'.
+      1:48:GlobalEnglish.Idioms:'low-hanging fruit' is an idiom. Say it plainly: 'easy improvements'.
+      1:73:GlobalEnglish.Idioms:'drop the ball' is an idiom. Say it plainly: 'make a mistake'.
+  - name: sports and war
+    input: |
+      Give a ballpark figure. There is no silver bullet.
+    want: |
+      1:8:GlobalEnglish.Idioms:'ballpark figure' is an idiom. Say it plainly: 'rough estimate'.
+      1:37:GlobalEnglish.Idioms:'silver bullet' is an idiom. Say it plainly: 'simple solution'.
+  - name: clean
+    input: |
+      Setup is easy, and the cache is the easiest improvement. Check each step.
+    want: ""

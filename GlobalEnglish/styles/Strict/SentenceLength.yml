@@ -1,0 +1,20 @@
+# A long sentence is a long parse, and a reader working in a second
+# language holds less of it at once. Translation tools also do worse on it.
+extends: occurrence
+message: "%d words in one sentence. Keep it under 25; split it."
+link: https://developers.google.com/style/translation#use-simpler-words-and-shorter-sentences
+level: suggestion
+scope: sentence
+max: 25
+token: '\b\w+\b'
+
+tests:
+  - name: fires
+    input: |
+      When you have finished the installation and confirmed that the service starts, open the settings page, choose the account you want to connect, and paste the token into the field.
+    want: |
+      1:1:Strict.SentenceLength:30 words in one sentence. Keep it under 25; split it.
+  - name: clean
+    input: |
+      When the service starts, open the settings page. Paste the token into the field.
+    want: ""

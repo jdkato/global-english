@@ -1,0 +1,24 @@
+# "Since" means both "because" and "from the time that". When a date or an
+# event follows it, it means time; otherwise, a reader has to guess.
+extends: existence
+message: "'%s' can mean 'because' or 'from the time that'. For a reason, use '%s'."
+link: https://developers.google.com/style/word-list#since
+level: suggestion
+ignorecase: true
+action:
+  name: replace
+  params:
+    - because
+tokens:
+  - '(?<!\b(?:ever|long|has|have|had|been) )since(?!\s+(?:\d|v\d|(?:then|when|version|release|the (?:start|beginning|release|launch|first|last)|(?:its|the|their|our|your) (?:creation|introduction|release|launch|inception)|last|yesterday|(?:early|late|mid)[- ]?\d|January|February|March|April|May|June|July|August|September|October|November|December|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b))'
+
+tests:
+  - name: fires
+    input: |
+      Since the cache is shared, clear it first.
+    want: |
+      1:1:GlobalEnglish.Since:'Since' can mean 'because' or 'from the time that'. For a reason, use 'because'.
+  - name: time
+    input: |
+      The flag has existed since version 2, and since 2024 it is on by default. It has been stable ever since.
+    want: ""

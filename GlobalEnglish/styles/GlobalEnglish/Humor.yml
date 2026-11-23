@@ -1,0 +1,26 @@
+# Jokes, winks, and laughter. Humor rarely survives translation, and a
+# literal reader cannot tell it from an instruction.
+extends: existence
+message: "'%s' marks a joke. Humor rarely translates; state the point plainly."
+link: https://developers.google.com/style/translation#be-inclusive
+level: suggestion
+nonword: true
+tokens:
+  - '(?i)\b(?:lol|lmao|rofl|haha(?:ha)*|hehe|jk)\b'
+  - '(?i)\b(?:just kidding|(?:no )?pun intended|tongue[- ]in[- ]cheek)\b'
+  - '(?i)\*(?:wink|sigh|grin)\*'
+  - '(?:^|(?<=\s))[:;]-?[)(DPp](?=\s|$)'
+  - '(?:^|(?<=\s))¯\\_\(ツ\)_/¯'
+
+tests:
+  - name: fires
+    input: |
+      The config is written in YAML (no pun intended) ;) and it works, lol.
+    want: |
+      1:32:GlobalEnglish.Humor:'no pun intended' marks a joke. Humor rarely translates; state the point plainly.
+      1:49:GlobalEnglish.Humor:';)' marks a joke. Humor rarely translates; state the point plainly.
+      1:66:GlobalEnglish.Humor:'lol' marks a joke. Humor rarely translates; state the point plainly.
+  - name: clean
+    input: |
+      The config is written in YAML, and it works. Run `f(x):p` to print.
+    want: ""

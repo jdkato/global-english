@@ -1,0 +1,30 @@
+# Three or more nouns in a row, "user account settings page". Each noun
+# modifies the next, and the reader has to work out how; a translation
+# has to unpack it with prepositions anyway. Only the last noun can be
+# plural, because a verb ending in -s is often tagged as a plural noun.
+# Hyphenated words are left out; they are usually adjectives.
+extends: sequence
+message: "Three nouns in a row. Unpack the stack with 'of', 'for', or a verb."
+link: https://developers.google.com/style/translation#use-modifiers-appropriately
+level: suggestion
+tokens:
+  - tag: '^NNS?$'
+    negate: true
+  - tag: '^NN$'
+    pattern: '[a-z]+'
+    min: 2
+    target: true
+  - tag: '^NNS?$'
+    pattern: '[a-z]+'
+    target: true
+
+tests:
+  - name: fires
+    input: |
+      Open the user account settings page.
+    want: |
+      1:10:GlobalEnglish.NounStack:Three nouns in a row. Unpack the stack with 'of', 'for', or a verb.
+  - name: clean
+    input: |
+      Open the settings page for your account.
+    want: ""

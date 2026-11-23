@@ -1,0 +1,25 @@
+# "While" means both "during the time that" and "whereas". Keep it for
+# time and before an -ing verb, and name the contrast when one is meant.
+extends: existence
+message: "'%s' can mean 'during the time that' or 'whereas'. For a contrast, use %s."
+link: https://developers.google.com/style/word-list#while
+level: suggestion
+ignorecase: true
+action:
+  name: replace
+  params:
+    - whereas
+    - although
+tokens:
+  - '(?<!\b(?:a|the|worth(?: (?:your|their|our|it))?) )while(?!\s+(?:still\s+|also\s+)?\w+ing\b)'
+
+tests:
+  - name: fires
+    input: |
+      The CLI is fast, while the API is flexible.
+    want: |
+      1:18:GlobalEnglish.While:'while' can mean 'during the time that' or 'whereas'. For a contrast, use 'whereas' or 'although'.
+  - name: time
+    input: |
+      Wait a while. Do not close the window while running the installer.
+    want: ""

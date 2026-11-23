@@ -1,0 +1,24 @@
+# "May" grants permission and states a possibility. "You may lose data"
+# reads as both; "can" and "might" each say one thing.
+extends: existence
+message: "'%s' reads as permission or possibility. Use %s."
+link: https://developers.google.com/style/word-list#may
+level: suggestion
+action:
+  name: replace
+  params:
+    - can
+    - might
+tokens:
+  - may
+
+tests:
+  - name: fires
+    input: |
+      You may lose data if you restart the server.
+    want: |
+      1:5:GlobalEnglish.May:'may' reads as permission or possibility. Use 'can' or 'might'.
+  - name: clean
+    input: |
+      You might lose data. You can restart the server. The release is in May 2026.
+    want: ""

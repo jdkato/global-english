@@ -1,0 +1,57 @@
+# Informal words that a course in English never taught, or that mean
+# something else in the dictionary.
+extends: substitution
+message: "'%[2]s' is informal. Use %[1]s."
+link: https://developers.google.com/style/translation#be-inclusive
+level: warning
+ignorecase: true
+action:
+  name: replace
+swap:
+  gonna: going to
+  wanna: want to
+  gotta: have to
+  kinda: somewhat
+  sorta: somewhat
+  dunno: do not know
+  y['’]all: you
+  yeah: 'yes'
+  yep: 'yes'
+  nope: 'no'
+  awesome(?![-/]): excellent
+  super (?:easy|simple|fast|quick|useful): very
+  a ton of: many
+  tons of: many
+  a bunch of: several
+  loads of: many
+  folks: people
+  stuff: items
+  nifty: useful
+  hacky: improvised
+  janky: unreliable
+  gotcha: pitfall
+  grok: understand
+  newbies?: beginner
+  noobs?: beginner
+  biggie: problem
+  freebie: free item
+  (?:a )?no[- ]go: not possible
+  (?:a )?shoo[- ]in: certain
+  ASAP: as soon as possible
+  FYI: note
+  TL;?DR: summary
+  OOTB: by default
+
+tests:
+  - name: fires
+    input: |
+      Folks, this awesome tool is gonna save you tons of time.
+    want: |
+      1:1:GlobalEnglish.Slang:'Folks' is informal. Use 'people'.
+      1:13:GlobalEnglish.Slang:'awesome' is informal. Use 'excellent'.
+      1:29:GlobalEnglish.Slang:'gonna' is informal. Use 'going to'.
+      1:44:GlobalEnglish.Slang:'tons of' is informal. Use 'many'.
+  - name: clean
+    input: |
+      This excellent tool saves people a lot of time.
+    want: ""

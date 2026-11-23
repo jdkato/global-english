@@ -1,0 +1,76 @@
+# A verb and a particle whose meaning is not the sum of the two. Each has
+# one word that a dictionary, and a translation tool, gets right.
+extends: substitution
+message: "Use %s instead of '%s'."
+link: https://developers.google.com/style/translation#avoid-phrasal-verbs
+level: suggestion
+ignorecase: true
+action:
+  name: replace
+swap:
+  find out: learn
+  finds out: learns
+  found out: learned
+  finding out: learning
+  figure out: determine
+  figures out: determines
+  figured out: determined
+  figuring out: determining
+  come up with: create
+  came up with: created
+  carry out: perform
+  carries out: performs
+  carried out: performed
+  look into: investigate
+  looked into: investigated
+  point out: note
+  points out: notes
+  pointed out: noted
+  fill (?:out|in) the form: complete the form
+  get rid of: remove
+  got rid of: removed
+  go over: review
+  went over: reviewed
+  put off: postpone
+  call off: cancel
+  run into: encounter
+  ran into: encountered
+  runs into: encounters
+  leave out: omit
+  left out: omitted
+  leaves out: omits
+  put together: assemble
+  speed up: accelerate
+  speeds up: accelerates
+  give up: stop
+  come across: find
+  came across: found
+  take into account: consider
+  hold off: wait
+  take place: occur
+  takes place: occurs
+  took place: occurred
+  turn on: enable
+  turns on: enables
+  turned on: enabled
+  turn off: disable
+  turns off: disables
+  turned off: disabled
+  look up: find
+  looks up: finds
+  looked up: found
+  make sure: ensure
+  makes sure: ensures
+
+tests:
+  - name: fires
+    input: |
+      To find out which port is free, turn off the firewall and make sure the logs are on.
+    want: |
+      1:4:GlobalEnglish.PhrasalVerbs:Use 'learn' instead of 'find out'.
+      1:33:GlobalEnglish.PhrasalVerbs:Use 'disable' instead of 'turn off'.
+      1:59:GlobalEnglish.PhrasalVerbs:Use 'ensure' instead of 'make sure'.
+  - name: clean
+    input: |
+      To learn which port is free, disable the firewall and ensure that the logs are on.
+    want: ""
